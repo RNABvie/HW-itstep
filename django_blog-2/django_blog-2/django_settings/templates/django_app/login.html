@@ -1,0 +1,32 @@
+{% extends "components/base.html" %}
+{% load static %}
+{% block main %}
+
+<div class="containerLog my-5 w-50 bg-light card p-3">
+<main class="form-signing">
+    {% if error %}
+        {% include "components/error.html" %}
+    {% endif %}
+  <form action="{% url 'login' %}" method="POST">
+      {% csrf_token %}
+    <h1 class="h3" align="center">Войдите в аккаунт</h1>
+    <div class="form-floating">
+      <input name="email" type="text" class="form-control" id="floatingInput" placeholder="name@example.com" minlength="5" maxlength="200" required><br>
+      <label class="font-color" for="floatingInput">Электронная почта</label>
+    </div>
+    <div class="input-group m-1 p-1">
+        <div class="form-floating">
+            <input name="password" type="password" id="passwordInput" class="form-control w-100" placeholder="Password" minlength="8" maxlength="34" required><button id="toggleButton" onclick="myFunction()" class="btn-pwd" type="button">&#x1F441;</button><span class="font-color-danger"><small id="arrow"><u>показать пароль</u></small></span><br>
+          <label class="font-color" for="passwordInput">Пароль</label>
+        </div>
+<!--        <button id="toggleButton" onclick="myFunction()" class="btn-pwd" type="button">&#x1F441;</button><span class="font-color-danger"><small id="arrow"><u>показать пароль</u></small></span>-->
+    </div>
+    <div class="grppad">
+        <button class="btn-primary" type="submit">Войти</button>
+        <a class="btn-secondary" type="button" href="{% url 'register' %}"><span>регистрация</span></a>
+<!--        ановление доступа</a>-->
+    </div>
+  </form>
+</main>
+</div>
+{% endblock main %}
