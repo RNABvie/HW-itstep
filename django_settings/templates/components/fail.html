@@ -1,0 +1,8 @@
+<button style="height:35px;background-color:red" class="" type="button">
+
+  {% if 'UNIQUE' in error %}
+    АККАУНТ ПОД ДАННОЙ ПОЧТОЙ УЖЕ <b>ЗАРЕГИСТРИРОВАН !!</b>
+  {% else %}
+    {{ error }}
+  {% endif %}
+</button>

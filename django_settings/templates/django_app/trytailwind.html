@@ -1,0 +1,52 @@
+{% extends "components/base.html" %}
+
+{% load static %}
+
+{% block title %}Список постов{% endblock title %}
+
+{% block main %}
+        <section id="featured-posts" class="sectionTL grid  sm:grid-cols-2 gap-4 p-2">
+        <h2 class="h2TL col-span-full text-3xl md:text-4xl mb-8 border-l-4   border-blue-800 pl-2   my-4 text-blue-800 ">Список Постов</h2>
+
+
+            {% if is_detail_view %}
+
+                 {% for post in current_page %}
+            <div class="Mywidth grid lg:grid-cols-2 border rounded-lg gap-4 h-auto p-4">
+                 <div class="max-w-2xl  h-auto  flex items-center relative ">
+                    {% if post.image %}
+                     <img src="{{ post.image.url }}" class="imgTL customPost h-auto" alt="PostImg"/>
+<!--                     <div class="bg-blue-400  w-24 pt-1  h-8 text-gray-50 font-semibold text-center absolute top-0">-->
+<!--                         Javascript-->
+<!--                     </div>-->
+                    {% else %}
+                     <img class="imgTL customPost h-auto" alt="DefImpPost"/>
+                    {% endif %}
+                 </div>
+                 <div class="">
+                     <h3 class="h3TL text-2xl font-bold text-gray-800 mb-2 cursor-pointer ">{{ post.title }}</h3>
+                     <div class="flex gap-2 mb-2">
+                         <div class="w-10 h-10 rounded-full bg-gray-300"></div>
+                         <div class="text-sm text-gray-600">
+                             <h4 class="h4TL">{{ post.author.username }}</h4>
+                             <h4 class="h4TL">{{ post.date_time }}</h4>
+                         </div>
+                     </div>
+                     <p class="JsTextnewline pTL text-gray-700">{{ post.description|slice:"135" }}</p>
+
+                     <a href="{% url 'post_detail' post.id %}">
+                        <button class="buttonTL py-2 border px-4 customPost bg-blue-500 text-gray-50 rounded-lg mt-3 outline-none focus:outline-none hover:bg-blue-600 hover:text-gray-100">Перейти к посту</button>
+                     </a>
+                 </div>
+            </div>
+                {% endfor %}
+        </section>
+            {% else %}
+        <ul>
+            {% for post in current_page %}
+                <li>{{ post.title }} : {{ post.description|slice:"0:15" }}</li>
+            {% endfor %}
+        </ul>
+            {% endif %}
+{% include "components/paginator.html" %}
+{% endblock main %}

@@ -1,0 +1,26 @@
+{% extends "components/base.html" %}
+{% load static %}
+{% block main %}
+<br>
+<div class="containerProf">
+<img src="{% static 'images/user.png' %}" alt="userIco" width="25">
+
+<div class="picPar">
+    <table>
+        <tr>
+            <td>    {% if profile.avatar %}
+        <img src="{{ profile.avatar.url }}" alt="image" class="imgAva" width="275"/>
+    {% else %}
+        <img src="{% static 'images/user.png' %}" alt="image" class="img-fluid bd-placeholder-img" width="275"/>
+    {% endif %}</td>
+            <td style="vertical-align: top;">
+                <dl><div class="btn btn-sm btn-outline-dark">
+                <dt>Имя:<dd>{{ profile.user.first_name }}</dd></dt><hr>
+                <dt>Фамилия:<dd>{{ profile.user.last_name }}</dd></dt>
+                </div></dl>
+            </td>
+        </tr>
+    </table>
+</div>
+</div>
+{% endblock main %}

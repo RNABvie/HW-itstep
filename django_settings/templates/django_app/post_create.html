@@ -1,0 +1,46 @@
+{% extends "components/base.html" %}
+{% load static %}
+
+{% block title %}Публикация поста{% endblock title %}
+
+{% block main %}
+
+<div class="">
+<!--<main class="">-->
+    {% if error %}
+        {% include "components/fail.html" %}
+    {% endif %}
+    <form action="{% url 'post_create' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h1 align="center" class="h3 mb-3 fw-normal text-center">Заполните все поля и отправьте пост: </h1>
+    <div class="containerLog crtPost">
+        <table style="width:100%">
+          <tr>
+            <td style="width:50%"><label class="font-color" for="title">Наименование поста</label></td>
+          </tr>
+          <tr>
+            <td><input name="title" type="text" class="" id="title" placeholder="имя поста..." minlength="5" maxlength="50" required></td>
+          </tr>
+
+          <tr>
+            <td><label for="description" class="font-color">Описание поста:</label></td>
+          </tr>
+          <tr>
+            <td><textarea id="description" name="description" class="txtArea" rows="5" minlength="5" maxlength="2500" required placeholder="..."></textarea></td>
+          </tr>
+
+          <tr>
+            <td><label for="image" class="font-color">Изображение к посту</label></td>
+          </tr>
+          <tr>
+            <td><input name="image" type="file" accept="image/png,image/jpeg, image/jpg" class="" id="image" required></td>
+          </tr>
+            <tr>
+                <td class="tdd"><button class="crtBtn" type="submit">СОЗДАТЬ</button></td>
+            </tr>
+        </table>
+    </div>
+    </form>
+<!--</main>-->
+</div>
+{% endblock main %}

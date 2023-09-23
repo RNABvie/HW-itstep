@@ -1,0 +1,25 @@
+<table class="tbll">
+  <tr class="tbll">
+<!--          <td class="tbll">Webby</td>-->
+          <td class="tbll">
+                  <ul class="menu cf">
+                    <li><a href="{% url 'home' %}">Главная</a></li>
+
+<!--                    <li><a href="">App development</a></li>-->
+<!--                    <li><a href="">Marketing</a></li>-->
+
+<!--                    </li>-->
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'post_list' %}">Посты</a><ul class="submenu">
+                    <li><a href="{% url 'post_search' %}">Поиск постов</a></li>
+                    <li><a href="{% url 'post_create' %}">Создать пост</a></li></ul>
+                    <li><a href="{% url 'profile' %}">Профиль</a></li>
+                    <li><a href="{% url 'logout' %}">Log out</a></li>
+                    {% else %}
+                      <li><a href="{% url 'login' %}">Войти | Регистрация</a></li>
+                    {% endif %}
+                  </ul>
+          </td>
+<!--          <td class="tbll"></td>-->
+  </tr>
+</table>
